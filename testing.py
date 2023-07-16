@@ -1,18 +1,9 @@
 import streamlit as st
-from streamlit_webrtc import webrtc_streamer
-import socket
+from webcam import webcam
 
-def check_socket_connection():
-    try:
-        socket.create_connection(("localhost", 8080), 2)
-        return True
-    except socket.error:
-        return False
-
-b = st.button("check")
-if b:
-    st.code(check_socket_connection())
-    
-
-webrtc_ctx = webrtc_streamer(
-    key="WYH")
+captured_image = webcam()
+if captured_image is None:
+    st.write("Waiting for capture...")
+else:
+    st.write("Got an image from the webcam:")
+    st.image(captured_image)
