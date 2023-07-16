@@ -1,5 +1,6 @@
 import streamlit as st
 from streamlit_webrtc import webrtc_streamer
+import socket
 
 def check_socket_connection():
     try:
